@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.syafrizal.dtsproyek1.R;
+import com.syafrizal.dtsproyek1.fragments.ItemsFragment;
 import com.syafrizal.dtsproyek1.fragments.PokemonsFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +30,8 @@ public class NavigationActivity extends AppCompatActivity {
                     loadFragment(new PokemonsFragment());
                     textViewTitle.setText("Pokemon");
                     return true;
-                case R.id.navigation_moves:
-                    textViewTitle.setText("Moves");
-                    return true;
                 case R.id.navigation_items:
+                    loadFragment(new ItemsFragment());
                     textViewTitle.setText("Items");
                     return true;
             }

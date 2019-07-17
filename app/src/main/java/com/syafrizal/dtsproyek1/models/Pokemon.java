@@ -1,6 +1,9 @@
 package com.syafrizal.dtsproyek1.models;
 
-public class Pokemon {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pokemon implements Parcelable {
     String name;
     String type;
     String picture;
@@ -19,6 +22,8 @@ public class Pokemon {
     double genderRatioFemale;
     int hatchsteps;
     String evolution;
+
+
 
     public Pokemon(String name, String type, String picture, String seed, int hp, int attack, int defense, int speed, int speedattack, int speeddef, double height, int catchRate, String abillities, double weight, double genderRatioMale, double genderRatioFemale, int hatchsteps, String evolution) {
         this.name = name;
@@ -184,4 +189,64 @@ public class Pokemon {
     public void setEvolution(String evolution) {
         this.evolution = evolution;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.type);
+        dest.writeString(this.picture);
+        dest.writeString(this.seed);
+        dest.writeInt(this.hp);
+        dest.writeInt(this.attack);
+        dest.writeInt(this.defense);
+        dest.writeInt(this.speed);
+        dest.writeInt(this.speedattack);
+        dest.writeInt(this.speeddef);
+        dest.writeDouble(this.height);
+        dest.writeInt(this.catchRate);
+        dest.writeString(this.abillities);
+        dest.writeDouble(this.weight);
+        dest.writeDouble(this.genderRatioMale);
+        dest.writeDouble(this.genderRatioFemale);
+        dest.writeInt(this.hatchsteps);
+        dest.writeString(this.evolution);
+    }
+
+    protected Pokemon(Parcel in) {
+        this.name = in.readString();
+        this.type = in.readString();
+        this.picture = in.readString();
+        this.seed = in.readString();
+        this.hp = in.readInt();
+        this.attack = in.readInt();
+        this.defense = in.readInt();
+        this.speed = in.readInt();
+        this.speedattack = in.readInt();
+        this.speeddef = in.readInt();
+        this.height = in.readDouble();
+        this.catchRate = in.readInt();
+        this.abillities = in.readString();
+        this.weight = in.readDouble();
+        this.genderRatioMale = in.readDouble();
+        this.genderRatioFemale = in.readDouble();
+        this.hatchsteps = in.readInt();
+        this.evolution = in.readString();
+    }
+
+    public static final Parcelable.Creator<Pokemon> CREATOR = new Parcelable.Creator<Pokemon>() {
+        @Override
+        public Pokemon createFromParcel(Parcel source) {
+            return new Pokemon(source);
+        }
+
+        @Override
+        public Pokemon[] newArray(int size) {
+            return new Pokemon[size];
+        }
+    };
 }
